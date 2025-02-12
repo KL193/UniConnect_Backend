@@ -15,7 +15,7 @@ import java.util.Date;
 public class UserEntity {
 
     @Id
-    private int userId;
+    private String userId;
     private String firstName;
     private String lastName;
     private String email;

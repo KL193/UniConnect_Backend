@@ -8,10 +8,7 @@ import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,10 +25,7 @@ public class UserController {
         this.userService  = userService ;
     }
 
-    @GetMapping("/getusers")
-    public ResponseEntity<List<UserDto>>  getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
-    }
+
 
     @GetMapping(value = "{userId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDto> getSelectedUser(@PathVariable String userId){
@@ -47,6 +41,15 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> addBook(@RequestBody UserDto userDto){
+        userService.saveUser(userDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
 
 
 }

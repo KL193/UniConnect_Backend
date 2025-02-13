@@ -6,6 +6,7 @@ import com.USJ.UniConnect_Backend.dto.UserDto;
 import com.USJ.UniConnect_Backend.entities.UserEntity;
 import com.USJ.UniConnect_Backend.exception.UserNotFoundException;
 import com.USJ.UniConnect_Backend.util.EntityDtoConversion;
+import com.USJ.UniConnect_Backend.util.UtilityData;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -40,6 +41,16 @@ public class UserService {
         }
         return entityDtoConversion
                 .toUserDto(userDao.getReferenceById(userId));
+    }
+
+    public void saveUser(UserDto user) {
+
+        user.setUserId(UtilityData.generateuserId());
+        user.setCreatedAt(UtilityData.generateTodayDate());
+        user.setUpdatedAt(UtilityData.generateTodayDate());
+
+
+        userDao.save(entityDtoConversion.toUserEntity(user));
     }
 
 

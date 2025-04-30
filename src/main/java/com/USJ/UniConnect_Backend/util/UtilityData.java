@@ -12,8 +12,8 @@ public class UtilityData {
     }
 
     // Updated to return java.util.Date
-    public static Date generateTodayDate() {
+   /* public static Date generateTodayDate() {
         LocalDate localDate = LocalDate.now();
         return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    }
+    }*/
 }

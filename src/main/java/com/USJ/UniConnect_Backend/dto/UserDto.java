@@ -1,6 +1,7 @@
 package com.USJ.UniConnect_Backend.dto;
 
 
+import com.USJ.UniConnect_Backend.entities.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +14,12 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDto {
 
-    private String userId;
-    private String firstName;
-    private String lastName;
+    private String Id;
+    private String name;
     private String email;
-    private String passwordHash;
-    private String phoneNumber;
-    private String profilePictureUrl;
-    private Date createdAt;
-    private Date updatedAt;
-    private boolean status;
+    private String address;
+    private String password;
+
+
+    private UserRole role;
 }

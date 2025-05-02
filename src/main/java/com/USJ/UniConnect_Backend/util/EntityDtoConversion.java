@@ -1,4 +1,4 @@
-package com.USJ.UniConnect_Backend.util;
+/*package com.USJ.UniConnect_Backend.util;
 
 import com.USJ.UniConnect_Backend.dto.UserDto;
 import com.USJ.UniConnect_Backend.entities.UserEntity;
@@ -31,3 +31,4 @@ public class EntityDtoConversion {
 
 
 }
+*/

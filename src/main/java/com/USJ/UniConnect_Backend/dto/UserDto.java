@@ -1,12 +1,13 @@
 package com.USJ.UniConnect_Backend.dto;
 
 
-import com.USJ.UniConnect_Backend.entities.UserRole;
+import com.USJ.UniConnect_Backend.entities.UserEntity;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 
 @Data
@@ -14,12 +15,21 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDto {
 
-    private String Id;
+    private String id;
+    @NotBlank(message = "{user.name.absent}")
     private String name;
+    @NotBlank(message = "{user.email.absent}")
+    @Email(message = "{user.email.invalid}")
     private String email;
     private String address;
+    @NotBlank(message = "{user.password.absent}")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,15}$",message = "{user.password.invalid}")
     private String password;
 
 
     private UserRole role;
+
+    public UserEntity toEntity() {
+        return new UserEntity(this.id, this.name, this.email, this.address, this.password, this.role);
+    }
 }

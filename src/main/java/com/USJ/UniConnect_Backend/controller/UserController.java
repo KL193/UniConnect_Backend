@@ -1,39 +1,52 @@
 package com.USJ.UniConnect_Backend.controller;
 
+import com.USJ.UniConnect_Backend.dto.LoginDto;
 import com.USJ.UniConnect_Backend.dto.UserDto;
 
+import com.USJ.UniConnect_Backend.exception.JobPortalException;
 import com.USJ.UniConnect_Backend.service.UserService;
+import com.USJ.UniConnect_Backend.util.UtilityData;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
+@Validated
 @RequestMapping("api/v1/usercontroller")
 public class UserController {
 
 
+    @Autowired
     private UserService userService;
 
-    @Autowired
+  /*  @Autowired
     public UserController(UserService userService) {
 
         this.userService  = userService ;
-    }
+    }*/
+
 
     @PostMapping("/signup")
-    public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
-        if(userService.emailExists(userDto.getEmail())){
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists");
-        }
+    public ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserDto userDto)throws JobPortalException{
 
-        userService.saveUser(userDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
+        userDto.setId(UtilityData.generateuserId());
+
+        userDto = userService.registerUser(userDto);
+        return new ResponseEntity<>(userDto, HttpStatus.CREATED);
+
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> loginUser(@RequestBody @Valid LoginDto  loginDto)throws JobPortalException {
 
 
+        return new ResponseEntity<>(userService.loginUser(loginDto), HttpStatus.OK);
 
+    }
 
 
 

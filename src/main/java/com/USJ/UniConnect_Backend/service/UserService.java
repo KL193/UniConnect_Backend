@@ -1,9 +1,12 @@
 package com.USJ.UniConnect_Backend.service;
 
+import com.USJ.UniConnect_Backend.dto.LoginDto;
 import com.USJ.UniConnect_Backend.dto.UserDto;
+import com.USJ.UniConnect_Backend.exception.JobPortalException;
 
 public interface UserService {
 
-    void saveUser(UserDto userDto);
-    boolean emailExists(String email);
+    public UserDto registerUser(UserDto userDto) throws JobPortalException;
+
+    public UserDto loginUser(LoginDto  loginDto ) throws JobPortalException;
 }

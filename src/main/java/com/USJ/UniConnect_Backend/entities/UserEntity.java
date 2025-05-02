@@ -1,13 +1,19 @@
 package com.USJ.UniConnect_Backend.entities;
 
 
+import com.USJ.UniConnect_Backend.dto.UserDto;
+import com.USJ.UniConnect_Backend.dto.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 import java.util.Date;
 
+
+
+@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,4 +32,8 @@ public class UserEntity {
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    public UserDto toDto() {
+        return new UserDto(this.id, this.name, this.email, this.address, this.password, this.role);
+    }
 }

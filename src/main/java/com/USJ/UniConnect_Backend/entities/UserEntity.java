@@ -38,9 +38,9 @@ public class UserEntity {
 
     private UserRole role;
 
-   // private String profileId;
+    private Long profileId;
 
     public UserDto toDto() {
-        return new UserDto(this.id, this.name, this.email, this.address, this.password, this.role);
+        return new UserDto(this.id, this.name, this.email, this.address, this.password, this.role,this.profileId);
     }
 }

@@ -28,9 +28,9 @@ public class UserDto {
 
 
     private UserRole role;
-    //private String profileId;
+    private Long profileId;
 
     public UserEntity toEntity() {
-        return new UserEntity(this.id, this.name, this.email, this.address, this.password, this.role);
+        return new UserEntity(this.id, this.name, this.email, this.address, this.password, this.role,this.profileId);
     }
 }

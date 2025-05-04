@@ -6,6 +6,7 @@ import com.USJ.UniConnect_Backend.dto.UserDto;
 import com.USJ.UniConnect_Backend.entities.UserEntity;
 import com.USJ.UniConnect_Backend.exception.JobPortalException;
 //import com.USJ.UniConnect_Backend.service.ProfileService;
+import com.USJ.UniConnect_Backend.service.ProfileService;
 import com.USJ.UniConnect_Backend.service.UserService;
 
 
@@ -25,14 +26,15 @@ public class UserServiceIMPL implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-   /* @Autowired
-    private ProfileService profileService;*/
+    @Autowired
+    private ProfileService profileService;
 
     @Override
     public UserDto registerUser(UserDto userDto) throws JobPortalException {
         Optional<UserEntity> optional = userDao.findByEmail(userDto.getEmail());
 
         if (optional.isPresent())throw new JobPortalException("User_Found");
+        userDto.setProfileId(profileService.createProfile(userDto.getEmail()));
         userDto.setId(Utilities.getNextSequence("users"));
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
         UserEntity userEntity = userDto.toEntity();

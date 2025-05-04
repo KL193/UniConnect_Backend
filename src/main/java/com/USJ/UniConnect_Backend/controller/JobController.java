@@ -38,4 +38,10 @@ public class JobController {
         return  new ResponseEntity<>(jobService.getAllJobs(),HttpStatus.OK);
     }
 
+    @GetMapping("/get/{id}")
+    public ResponseEntity<JobDto> getJob(@PathVariable Long id) throws JobPortalException{
+        return  new ResponseEntity<>(jobService.getJob(id),HttpStatus.OK);
+    }
+
+
 }

@@ -30,4 +30,9 @@ public class JobServiceImpl implements JobService {
     public List<JobDto> getAllJobs() {
         return jobDao.findAll().stream().map((x)->x.toDto()).toList();
     }
+
+    @Override
+    public JobDto getJob(Long id) throws JobPortalException {
+        return jobDao.findById(id).orElseThrow(()->new JobPortalException("Job_Not_Found")).toDto();
+    }
 }

@@ -12,4 +12,6 @@ public interface JobService {
    public  JobDto postJob(@Valid JobDto jobDto) throws JobPortalException;
 
     public List<JobDto> getAllJobs();
+
+    public  JobDto getJob(Long id) throws JobPortalException;
 }

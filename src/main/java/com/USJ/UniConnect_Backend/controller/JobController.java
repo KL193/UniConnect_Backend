@@ -1,0 +1,41 @@
+package com.USJ.UniConnect_Backend.controller;
+
+import com.USJ.UniConnect_Backend.dto.JobDto;
+import com.USJ.UniConnect_Backend.dto.UserDto;
+import com.USJ.UniConnect_Backend.exception.JobPortalException;
+import com.USJ.UniConnect_Backend.service.JobService;
+import com.USJ.UniConnect_Backend.util.Utilities;
+import jakarta.validation.Valid;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin
+@Validated
+@RequestMapping("api/v1/jobs")
+public class JobController {
+
+    @Autowired
+    private JobService jobService;
+
+    @PostMapping("/post")
+    public ResponseEntity<JobDto> postJob(@RequestBody @Valid JobDto  jobDto)throws JobPortalException {
+
+
+        return new ResponseEntity<>(jobService.postJob(jobDto), HttpStatus.CREATED);
+
+    }
+
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<JobDto>> getAllJobs() throws JobPortalException{
+        return  new ResponseEntity<>(jobService.getAllJobs(),HttpStatus.OK);
+    }
+
+}

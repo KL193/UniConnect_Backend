@@ -22,13 +22,11 @@ import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@Table(name="users")
 @Document(collection = "users")
-
 public class UserEntity {
 
     @Id
-    private String id;
+    private long id;
     private String name;
 
     @Indexed(unique = true)
@@ -39,6 +37,8 @@ public class UserEntity {
 
 
     private UserRole role;
+
+   // private String profileId;
 
     public UserDto toDto() {
         return new UserDto(this.id, this.name, this.email, this.address, this.password, this.role);

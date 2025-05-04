@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDto {
 
-    private String id;
+    private long id;
     @NotBlank(message = "{user.name.absent}")
     private String name;
     @NotBlank(message = "{user.email.absent}")
@@ -28,6 +28,7 @@ public class UserDto {
 
 
     private UserRole role;
+    //private String profileId;
 
     public UserEntity toEntity() {
         return new UserEntity(this.id, this.name, this.email, this.address, this.password, this.role);

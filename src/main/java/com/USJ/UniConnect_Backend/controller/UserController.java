@@ -5,7 +5,7 @@ import com.USJ.UniConnect_Backend.dto.UserDto;
 
 import com.USJ.UniConnect_Backend.exception.JobPortalException;
 import com.USJ.UniConnect_Backend.service.UserService;
-import com.USJ.UniConnect_Backend.util.UtilityData;
+import com.USJ.UniConnect_Backend.util.Utilities;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("/signup")
     public ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserDto userDto)throws JobPortalException{
 
-        userDto.setId(UtilityData.generateuserId());
+        userDto.setId(Utilities.getNextSequence("users"));
 
         userDto = userService.registerUser(userDto);
         return new ResponseEntity<>(userDto, HttpStatus.CREATED);

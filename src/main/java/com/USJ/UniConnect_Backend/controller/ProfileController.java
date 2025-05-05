@@ -32,4 +32,5 @@ public class ProfileController {
         return new ResponseEntity<>(profileService.updateProfile(profileDto), HttpStatus.OK);
 
     }
+    
 }

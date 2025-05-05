@@ -1,5 +1,6 @@
 package com.USJ.UniConnect_Backend.service;
 
+import com.USJ.UniConnect_Backend.dto.ApplicantDto;
 import com.USJ.UniConnect_Backend.dto.JobDto;
 import com.USJ.UniConnect_Backend.exception.JobPortalException;
 import jakarta.validation.Valid;
@@ -14,4 +15,6 @@ public interface JobService {
     public List<JobDto> getAllJobs();
 
     public  JobDto getJob(Long id) throws JobPortalException;
+
+    public  void applyJob(Long id, ApplicantDto applicantDto)throws JobPortalException;
 }

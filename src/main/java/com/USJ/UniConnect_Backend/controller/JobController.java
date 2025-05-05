@@ -1,12 +1,11 @@
 package com.USJ.UniConnect_Backend.controller;
 
+import com.USJ.UniConnect_Backend.dto.ApplicantDto;
 import com.USJ.UniConnect_Backend.dto.JobDto;
-import com.USJ.UniConnect_Backend.dto.UserDto;
+import com.USJ.UniConnect_Backend.dto.ResponseDto;
 import com.USJ.UniConnect_Backend.exception.JobPortalException;
 import com.USJ.UniConnect_Backend.service.JobService;
-import com.USJ.UniConnect_Backend.util.Utilities;
 import jakarta.validation.Valid;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +41,16 @@ public class JobController {
     public ResponseEntity<JobDto> getJob(@PathVariable Long id) throws JobPortalException{
         return  new ResponseEntity<>(jobService.getJob(id),HttpStatus.OK);
     }
+
+
+    @PostMapping("/apply/{id}")
+    public ResponseEntity<ResponseDto> applyJob(@PathVariable Long id , @RequestBody  ApplicantDto applicantDto)throws JobPortalException {
+
+        jobService.applyJob(id,applicantDto);
+        return new ResponseEntity<>(new ResponseDto("Applied Successfully"), HttpStatus.OK);
+
+    }
+
 
 
 }

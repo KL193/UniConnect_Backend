@@ -2,6 +2,7 @@ package com.USJ.UniConnect_Backend.service.impl;
 
 import com.USJ.UniConnect_Backend.dao.JobDao;
 import com.USJ.UniConnect_Backend.dto.ApplicantDto;
+import com.USJ.UniConnect_Backend.dto.Application;
 import com.USJ.UniConnect_Backend.dto.ApplicationStatus;
 import com.USJ.UniConnect_Backend.dto.JobDto;
 import com.USJ.UniConnect_Backend.entities.ApplicantEntity;
@@ -52,5 +53,24 @@ public class JobServiceImpl implements JobService {
         jobEntity.setApplicants(applicantEntities);
         jobDao.save(jobEntity);
 
+    }
+
+    @Override
+    public List<JobDto> getJobsPostedBy(Long id) {
+        return jobDao.findByPostedBy(id).stream().map((x)->x.toDto()).toList();
+    }
+
+    @Override
+    public void changeAppStatus(Application application) throws JobPortalException {
+        JobEntity jobEntity = jobDao.findById(application.getId()).orElseThrow(()->new JobPortalException("Job_Not_Found"));
+        List<ApplicantEntity> applicantEntities = jobEntity.getApplicants().stream().map((x)->{
+          if(application.getApplicationId()==x.getApplicationId()){
+              x.setApplicationStatus(application.getApplicationStatus());
+              if(application.getApplicationStatus().equals(ApplicationStatus.INTERVIEWING))x.setInterviewTime(application.getInterviewTime());
+          }
+          return x;
+        }).toList();
+        jobEntity.setApplicants(applicantEntities);
+        jobDao.save(jobEntity);
     }
 }

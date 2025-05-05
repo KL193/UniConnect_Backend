@@ -21,11 +21,12 @@ public class ProfileDto {
     private String location;
     private String about;
     private String picture;
+    private Long totalExp;
     private List<String> skills;
     private List<Experience> experience;
     private List<Certification> certifications;
 
     public ProfileEntity toEntity() {
-        return new ProfileEntity(this.id,this.name,this.email,this.jobTitle,this.company,this.location,this.about,this.picture!=null? Base64.getDecoder().decode(this.picture):null,this.skills,this.experience,this.certifications);
+        return new ProfileEntity(this.id,this.name,this.email,this.jobTitle,this.company,this.location,this.about,this.picture!=null? Base64.getDecoder().decode(this.picture):null,this.totalExp,this.skills,this.experience,this.certifications);
     }
 }

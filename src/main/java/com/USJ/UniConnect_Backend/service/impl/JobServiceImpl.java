@@ -1,10 +1,7 @@
 package com.USJ.UniConnect_Backend.service.impl;
 
 import com.USJ.UniConnect_Backend.dao.JobDao;
-import com.USJ.UniConnect_Backend.dto.ApplicantDto;
-import com.USJ.UniConnect_Backend.dto.Application;
-import com.USJ.UniConnect_Backend.dto.ApplicationStatus;
-import com.USJ.UniConnect_Backend.dto.JobDto;
+import com.USJ.UniConnect_Backend.dto.*;
 import com.USJ.UniConnect_Backend.entities.ApplicantEntity;
 import com.USJ.UniConnect_Backend.entities.JobEntity;
 import com.USJ.UniConnect_Backend.exception.JobPortalException;
@@ -26,8 +23,16 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public JobDto postJob(JobDto jobDto) throws JobPortalException {
-        jobDto.setId(Utilities.getNextSequence("jobs"));
-        jobDto.setPostTime(LocalDateTime.now());
+        if(jobDto.getId()==0){
+            jobDto.setId(Utilities.getNextSequence("jobs"));
+            jobDto.setPostTime(LocalDateTime.now());
+        }
+
+        else{
+            JobEntity jobEntity = jobDao.findById(jobDto.getId()).orElseThrow(()->new JobPortalException("Job_Not_Found"));
+            if(jobEntity.getJobStatus().equals(JobStatus.DRAFT) || jobDto.getJobStatus().equals(JobStatus.CLOSED))jobDto.setPostTime(LocalDateTime.now());
+        }
+
         return jobDao.save(jobDto.toEntity()).toDto();
 
     }

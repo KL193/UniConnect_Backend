@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin
 @Validated
 @RequestMapping("api/v1/profile")
-public class ProfileController {
+public class  ProfileController {
 
     @Autowired
     private ProfileService profileService;

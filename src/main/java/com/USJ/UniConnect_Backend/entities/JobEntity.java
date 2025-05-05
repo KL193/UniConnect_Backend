@@ -1,6 +1,6 @@
 package com.USJ.UniConnect_Backend.entities;
 
-import com.USJ.UniConnect_Backend.dto.Applicant;
+import com.USJ.UniConnect_Backend.dto.ApplicantDto;
 import com.USJ.UniConnect_Backend.dto.JobDto;
 import com.USJ.UniConnect_Backend.dto.JobStatus;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class JobEntity {
     private Long id;
     private String jobTitle;
     private String company;
-    private List<Applicant> applicants;
+    private List<ApplicantEntity> applicants;
     private String about;
     private String experience;
     private String jobType;
@@ -34,7 +34,7 @@ public class JobEntity {
 
 
     public JobDto toDto(){
-        return new JobDto(this.id,this.jobTitle,this.company,this.applicants,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus);
+        return new JobDto(this.id,this.jobTitle,this.company,this.applicants!=null?this.applicants.stream().map((x)->x.toDto()).toList():null,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus);
     }
 
 

@@ -16,7 +16,7 @@ public class JobDto {
     private Long id;
     private String jobTitle;
     private String company;
-    private List<Applicant> applicants;
+    private List<ApplicantDto> applicants;
     private String about;
     private String experience;
     private String jobType;
@@ -28,7 +28,8 @@ public class JobDto {
     private JobStatus jobStatus;
 
     public JobEntity toEntity(){
-        return new JobEntity(this.id,this.jobTitle,this.company,this.applicants,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus);
+        return new JobEntity(this.id,this.jobTitle,this.company,
+                this.applicants!=null?this.applicants.stream().map((x)->x.toEntity()).toList():null,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus);
     }
 
 }

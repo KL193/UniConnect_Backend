@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @Validated
@@ -24,6 +26,12 @@ public class ProfileController {
     public ResponseEntity<ProfileDto> getProfile(@PathVariable Long  id)throws JobPortalException{
 
         return new ResponseEntity<>(profileService.getProfile(id), HttpStatus.OK);
+
+    }
+    @GetMapping("/getAll")
+    public ResponseEntity<List<ProfileDto>> getAllProfiles()throws JobPortalException{
+
+        return new ResponseEntity<>(profileService.getAllProfiles(), HttpStatus.OK);
 
     }
     @PutMapping("/update")

@@ -1,6 +1,6 @@
 package com.USJ.UniConnect_Backend.entities;
 
-import com.USJ.UniConnect_Backend.dto.ApplicantDto;
+
 import com.USJ.UniConnect_Backend.dto.JobDto;
 import com.USJ.UniConnect_Backend.dto.JobStatus;
 import lombok.AllArgsConstructor;

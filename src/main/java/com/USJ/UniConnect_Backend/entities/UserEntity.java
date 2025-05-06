@@ -14,19 +14,14 @@ import org.springframework.data.mongodb.core.index.Indexed;
 
 
 
-import java.util.Date;
-
-
-
 @Data
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "users")
 public class UserEntity {
 
     @Id
-    private long id;
+    private Long id;
     private String name;
 
     @Indexed(unique = true)

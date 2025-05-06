@@ -2,6 +2,7 @@ package com.USJ.UniConnect_Backend.service.impl;
 
 import com.USJ.UniConnect_Backend.dao.UserDao;
 import com.USJ.UniConnect_Backend.dto.LoginDto;
+import com.USJ.UniConnect_Backend.dto.ResponseDto;
 import com.USJ.UniConnect_Backend.dto.UserDto;
 import com.USJ.UniConnect_Backend.entities.UserEntity;
 import com.USJ.UniConnect_Backend.exception.JobPortalException;
@@ -50,6 +51,17 @@ public class UserServiceIMPL implements UserService {
 
         return userEntity.toDto();
     }
+
+   /* @Override
+    public ResponseDto changePassword(LoginDto loginDto) throws JobPortalException {
+        UserEntity userEntity = userDao.findByEmail(loginDto.getEmail())
+                .orElseThrow(()-> new JobPortalException("User_Not_Found"));
+        userEntity.setPassword(passwordEncoder.encode(loginDto.getPassword()));
+        userDao.save(userEntity);
+
+        return new ResponseDto("Password changed successfully");
+    }*/
+
 
 
 }

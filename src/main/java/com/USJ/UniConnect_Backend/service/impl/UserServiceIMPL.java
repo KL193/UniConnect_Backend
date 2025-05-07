@@ -44,6 +44,13 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
+    public UserDto getUserByEmail(String email) throws JobPortalException {
+        UserEntity userEntity = userDao.findByEmail(email)
+                .orElseThrow(() -> new JobPortalException("User_Not_Found"));
+        return userEntity.toDto();
+    }
+
+    @Override
     public UserDto loginUser(LoginDto  loginDto) throws JobPortalException {
 
         UserEntity userEntity = userDao.findByEmail(loginDto.getEmail()).orElseThrow(()->new JobPortalException("User_Not_Found"));

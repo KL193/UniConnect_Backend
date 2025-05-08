@@ -110,7 +110,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>uniconnect_backend</finalName>
+		<finalName>backend_uniconnect</finalName>
 	</build>
 
 </project>

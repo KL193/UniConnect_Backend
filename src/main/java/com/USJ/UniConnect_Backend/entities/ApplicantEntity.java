@@ -5,6 +5,7 @@ import com.USJ.UniConnect_Backend.dto.ApplicationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -12,6 +13,7 @@ import java.util.Base64;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "application")
 public class ApplicantEntity{
 
     private Long applicationId;

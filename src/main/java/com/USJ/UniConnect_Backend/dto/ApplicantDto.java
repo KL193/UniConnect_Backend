@@ -4,6 +4,7 @@ import com.USJ.UniConnect_Backend.entities.ApplicantEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -13,6 +14,7 @@ import java.util.Base64;
 @NoArgsConstructor
 public class ApplicantDto {
 
+    @Id
     private Long applicationId;
     private String name;
     private String email;

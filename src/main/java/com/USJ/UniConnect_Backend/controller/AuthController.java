@@ -26,17 +26,13 @@ public class AuthController {
     private JwtHelper jwtHelper;
 
     @PostMapping("/login")
-    public ResponseEntity<?>createAuthentication(@RequestBody AuthenticationRequest request){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
+    public ResponseEntity<?> createAuthentication(@RequestBody AuthenticationRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
         final String jwt = jwtHelper.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
 
     }
-
-
-
-
 
 
 }

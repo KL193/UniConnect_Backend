@@ -1,4 +1,0 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD target/uniconnect_backend.jar uniconnect_backend.jar
-ENTRYPOINT ["java","-jar","/uniconnect_backend.jar"]

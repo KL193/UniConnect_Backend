@@ -57,7 +57,7 @@
 			<version>1.18.36</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+
 
 
 

@@ -27,7 +27,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-      
 
       # Create application.properties with secret URI
       - name: Set up application.properties
@@ -39,3 +38,13 @@ jobs:
 
       - name: Run tests
         run: mvn test
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: kadklk/uniconnect_backend
+          tags: latest
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}

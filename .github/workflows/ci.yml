@@ -43,7 +43,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
 
-          image: kadklk/uniconnect_backend
+          image: kadklk/backend_uniconnect
           tags: latest
           registry: docker.io
           dockerfile: Dockerfile

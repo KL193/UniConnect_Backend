@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM eclipse-temurin:21
 WORKDIR /app
 COPY target/uniconnect_backend.jar uniconnect_backend.jar
 EXPOSE 8080

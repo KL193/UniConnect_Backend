@@ -1,5 +1,5 @@
 FROM openjdk:8
 WORKDIR /app
-COPY target/uniconnect_backend.jar app.jar
+COPY target/uniconnect_backend.jar uniconnect_backend.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "uniconnect_backend.jar"]
